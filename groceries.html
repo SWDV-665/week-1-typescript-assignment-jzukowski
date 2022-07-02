@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/mustache@latest"></script>
+        <script src="grocery.js"></script>
+        <style>
+            .box {
+                display: flex;
+                align-items:center;
+            }
+
+            .box .groceryImg {
+                width: 50px;
+                height: 50px;
+                padding: 30px;
+            }
+
+            .box h3 {
+                font-size: 12pt;
+                font-weight: bold;
+            }
+
+            .box h4 {
+                font-size: 10pt;
+                font-weight: normal;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <div id="myDataTarget"></div>
+
+        <script type="text/html" id="myDataTemplate">
+            {{#groceries}}
+                <div class="box">
+                    <img class="groceryImg" src="{{imgPath}}">
+                    <span>
+                        <h3>Grocery Item: {{name}}</h3>
+                        <h4>quantity: {{quantity}}</h4>
+                    </span>
+                </div>
+            {{/groceries}}
+        </script>
+
+        <script>
+            var template = document.getElementById('myDataTemplate').innerHTML;
+            document.getElementById('myDataTarget').innerHTML = Mustache.render(template, {groceries});
+        </script>
+
+    </body>
+</html>
